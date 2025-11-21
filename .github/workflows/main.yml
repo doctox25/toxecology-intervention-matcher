@@ -1,0 +1,79 @@
+name: Run Intervention Matcher
+
+on:
+  schedule:
+    - cron: '30 */6 * * *'  # Run every 6 hours at 30 minutes past
+  workflow_dispatch:         # Allow manual trigger
+
+jobs:
+  match-interventions:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt --break-system-packages
+      
+      - name: Run Intervention Matcher
+        run: python intervention_matcher.py
+        env:
+          AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+```
+
+5. **Scroll down and click "Commit new file"**
+
+---
+
+### **Step 2: Add Your API Key as a Secret**
+
+1. **Click "Settings"** tab (top of your repo)
+2. In the left sidebar, click **"Secrets and variables"** → **"Actions"**
+3. Click **"New repository secret"**
+4. **Name:** `AIRTABLE_API_KEY`
+5. **Value:** Paste your Airtable API key (starts with `pat...`)
+6. Click **"Add secret"**
+
+---
+
+### **Step 3: Test the Workflow**
+
+1. **Click "Actions"** tab (top of your repo)
+2. You should see your workflow: "Run Intervention Matcher"
+3. Click on it
+4. Click **"Run workflow"** dropdown (right side)
+5. Click the green **"Run workflow"** button
+6. Wait ~30 seconds, then refresh
+7. You should see it running (yellow dot) or completed (green checkmark)
+
+---
+
+## 🎨 What Your Repo Will Look Like After
+```
+toxecology-intervention-matcher/
+├── .github/                    ← NEW (created automatically)
+│   └── workflows/
+│       └── main.yml           ← NEW (you're creating this)
+├── intervention_matcher.py    ← Already there ✅
+└── requirements.txt           ← Already there ✅
+```
+
+---
+
+## 📸 Visual Guide
+
+When you type `.github/workflows/main.yml` in the filename box, it should look like this:
+```
+Name your file...
+┌────────────────────────────────────────────────┐
+│ .github/workflows/main.yml                     │
+└────────────────────────────────────────────────┘
+     ↑        ↑       ↑
+   folder  folder   file
