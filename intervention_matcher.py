@@ -9,7 +9,7 @@ import os
 import sys
 from datetime import datetime, timedelta
 from typing import Dict, List, Tuple
-
+from pyairtable import Table, Base
 import logging
 
 # Configure logging
