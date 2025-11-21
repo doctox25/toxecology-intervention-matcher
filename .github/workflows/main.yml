@@ -26,7 +26,6 @@ jobs:
         run: python intervention_matcher.py
         env:
           AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
-```
 
 5. **Scroll down and click "Commit new file"**
 
