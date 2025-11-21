@@ -95,7 +95,7 @@ class InterventionMatcher:
         if not AIRTABLE_API_KEY:
             raise ValueError("AIRTABLE_API_KEY environment variable not set")
         
-        self.api = Api(AIRTABLE_API_KEY)
+        self.base = Base(AIRTABLE_API_KEY, BASE_ID)
         self.base = self.api.base(BASE_ID)
         
         # Load all interventions into memory for faster matching
